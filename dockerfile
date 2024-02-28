@@ -9,20 +9,18 @@ RUN apt-get install libxml2-dev -y
 RUN apt-get install python3-pip -y
 RUN pip3 install -U radian
 
-# https://code.visualstudio.com/docs/languages/r
-RUN R -e "install.packages('languageserver')"
 
 # >>> install renv in current version
 # https://rstudio.github.io/renv/articles/docker.html
 ENV RENV_VERSION 1.0.4
-# ENV RENV_PATHS_LIBRARY renv/library
+ENV RENV_PATHS_LIBRARY renv/library
 # ENV RENV_PATHS_CACHE renv/cache
-# RUN R -e "options(renv.config.cache.symlinks = FALSE)"
-RUN R -e "options(renv.config.repos.override = 'https://packagemanager.posit.co/cran/latest')"
+RUN R -e "options(renv.config.cache.symlinks = FALSE)"
 RUN R -e "install.packages('renv')"
 
-COPY ./code/renv.lock /code/
+COPY ./code/renv.lock /code/renv.lock
+COPY ./code/.Rprofile /code/.Rprofile
 
-RUN R -e "renv::restore()"
+# RUN R -e "renv::restore()"
 
 CMD ["/bin/bash"]
