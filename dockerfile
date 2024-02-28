@@ -15,10 +15,14 @@ RUN R -e "install.packages('languageserver')"
 # >>> install renv in current version
 # https://rstudio.github.io/renv/articles/docker.html
 ENV RENV_VERSION 1.0.4
-ENV RENV_PATHS_LIBRARY renv/library
-ENV RENV_PATHS_CACHE renv/cache
-RUN R -e "options(renv.config.cache.symlinks = FALSE)"
+# ENV RENV_PATHS_LIBRARY renv/library
+# ENV RENV_PATHS_CACHE renv/cache
+# RUN R -e "options(renv.config.cache.symlinks = FALSE)"
+RUN R -e "options(renv.config.repos.override = 'https://packagemanager.posit.co/cran/latest')"
 RUN R -e "install.packages('renv')"
 
+COPY ./code/renv.lock /code/
+
+RUN R -e "renv::restore()"
 
 CMD ["/bin/bash"]
