@@ -12,11 +12,8 @@
 
 library(languageserver)
 library(psych)
-library(conflicted)
 
-conflicts_prefer(psych::describe)
-# Code
-vector <- c(1, 2, 3, 4, 5, 6, 7)
 
+vector <- rnorm(500, mean=0 , sd=1)
 print(describe(vector))
 
