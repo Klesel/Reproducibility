@@ -19,9 +19,8 @@ RUN R -e "options(renv.config.cache.symlinks = FALSE)"
 RUN R -e "options(renv.config.repos.override = 'https://packagemanager.posit.co/cran/__linux__/jammy/latest')"
 RUN R -e "install.packages('renv')"
 
-# COPY ./code/renv.lock /code/renv.lock
-# COPY ./code/.Rprofile /code/.Rprofile
+COPY ./code/ /code/
 
-# RUN R -e "renv::restore()"
+RUN R -e "renv::restore()"
 
 CMD ["/bin/bash"]
