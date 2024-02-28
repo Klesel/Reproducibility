@@ -16,10 +16,11 @@ ENV RENV_VERSION 1.0.4
 ENV RENV_PATHS_LIBRARY renv/library
 # ENV RENV_PATHS_CACHE renv/cache
 RUN R -e "options(renv.config.cache.symlinks = FALSE)"
+RUN R -e "options(renv.config.repos.override = 'https://packagemanager.posit.co/cran/__linux__/jammy/latest')"
 RUN R -e "install.packages('renv')"
 
-COPY ./code/renv.lock /code/renv.lock
-COPY ./code/.Rprofile /code/.Rprofile
+# COPY ./code/renv.lock /code/renv.lock
+# COPY ./code/.Rprofile /code/.Rprofile
 
 # RUN R -e "renv::restore()"
 
