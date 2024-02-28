@@ -3,6 +3,7 @@ This is a repo that shows how to produce reproducible research.
 
 
 # Setup Docker
+
 ```console
 # build container
 docker build -t reproduction/r .
@@ -14,4 +15,6 @@ docker run --rm -it -v ${PWD}/code:/code reproduction/r
 # Git Bash
 docker run --rm -it -v /$(pwd)/code:/code reproduction/r
 
+# Run R Script in Terminal
+Rscript test.R
 ```
