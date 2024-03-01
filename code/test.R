@@ -13,7 +13,7 @@
 library(languageserver)
 library(psych)
 
-
+set.seed(1)
 vector <- rnorm(500, mean=0 , sd=1)
 print(describe(vector))
 
